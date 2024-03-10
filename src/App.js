@@ -6,6 +6,7 @@ import AndroidPrompt from './AndroidPrompt';
 
 function App(props) {
   const [hasNfc, setHasNfc] = React.useState(null);
+  const promptRef = React.useRef();
 
   React.useEffect(() => {
     async function checkNfc() {
@@ -29,7 +30,13 @@ function App(props) {
     return (
       <View style={styles.wrapper}>
         <Text>Your device does nott Support NFc!!!!</Text>
-        <AndroidPrompt />
+        <TouchableOpacity
+          onPress={() => {
+            promptRef.current.setVisible(true);
+          }}>
+          <Text>Test</Text>
+        </TouchableOpacity>
+        <AndroidPrompt ref={promptRef} />
       </View>
     );
   }
